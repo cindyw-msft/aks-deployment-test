@@ -19,5 +19,3 @@ steps:
     arguments: '-f azure-pipelines.yaml'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
-    secretType: 'dockerRegistry'
-    containerRegistryType: 'Azure Container Registry'
