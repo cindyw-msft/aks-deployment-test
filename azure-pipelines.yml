@@ -13,9 +13,11 @@ steps:
 - task: Kubernetes@1
   inputs:
     connectionType: 'Kubernetes Service Connection'
-    kubernetesServiceEndpoint: 'ado-svc'
+    kubernetesServiceEndpoint: 'k8s-service-conn'
     namespace: 'default'
     command: 'apply'
     arguments: '-f azure-pipelines.yaml'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
