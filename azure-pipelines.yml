@@ -16,6 +16,6 @@ steps:
     kubernetesServiceEndpoint: 'k8s-service-conn'
     namespace: 'default'
     command: 'apply'
-    arguments: '-f azure-pipelines.yaml'
+    arguments: '-f azure-pipelines.yml'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Azure Container Registry'
