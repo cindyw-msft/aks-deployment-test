@@ -21,15 +21,11 @@ steps:
     artifactName: 'manifests'
     downloadPath: '$(System.ArtifactsDirectory)'
 
-- task: Kubernetes@1
+- task: KubernetesManifest@0
   inputs:
-    connectionType: 'Kubernetes Service Connection'
-    kubernetesServiceEndpoint: 'devops-service-connection'
+    action: 'deploy'
+    kubernetesServiceConnection: 'devops-service-connection'
     namespace: 'default'
-    command: 'apply'
-    arguments: '-f build.yml'
-    secretType: 'dockerRegistry'
-    containerRegistryType: 'Azure Container Registry'
-    azureSubscriptionEndpointForSecrets: 'MCAPS-Hybrid-REQ-49139-2022-cindywang(d6ce0703-8dc9-4787-9429-452311475d64)'
-    azureContainerRegistry: 'myregistry011623.azurecr.io'
-    secretName: 'devops-secret'
+    manifests: |
+      $(System.ArtifactsDirectory)/manifests/deployment.yml
+      $(System.ArtifactsDirectory)/manifests/service.yml
