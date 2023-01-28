@@ -10,11 +10,16 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: DownloadPipelineArtifact@2
+- task: DownloadBuildArtifacts@1
   inputs:
-    buildType: 'current'
+    buildType: 'specific'
+    project: 'd764d397-44f5-41b4-9b33-c789b25995da'
+    pipeline: '6'
+    buildVersionToDownload: 'specific'
+    buildId: '15'
+    downloadType: 'single'
     artifactName: 'manifests'
-    targetPath: '$(Pipeline.Workspace)/manifests'
+    downloadPath: '$(System.ArtifactsDirectory)'
 
 - task: Kubernetes@1
   inputs:
