@@ -22,3 +22,16 @@ steps:
     targetPath: '$(Pipeline.Workspace)'
     artifact: 'manifests'
     publishLocation: 'pipeline'
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'devops-service-connection'
+    namespace: 'default'
+    command: 'get'
+    arguments: 'pods'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
+    azureSubscriptionEndpointForSecrets: 'MCAPS-Hybrid-REQ-49139-2022-cindywang(d6ce0703-8dc9-4787-9429-452311475d64)'
+    azureContainerRegistry: 'myregistry011623.azurecr.io'
+    secretName: 'devops-secret'
